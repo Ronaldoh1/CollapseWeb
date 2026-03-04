@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void:       #050508;
+  --deep:       #09090f;
+  --ink:        #0f0f18;
+  --panel:      #14141f;
+  --surface:    #1a1a28;
+  --gold:       #c8960c;
+  --amber:      #e0aa20;
+  --light-gold: #f0cc60;
+  --ember:      #c84820;
+  --crimson:    #cc1111;
+  --ash:        #484858;
+  --fog:        #787890;
+  --mist:       #a8a8c0;
+  --silver:     #c8c8dc;
+  --snow:       #f0eef8;
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--ash); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::selection { background: rgba(200,150,12,0.25); color: var(--snow); }
+
+html { scroll-behavior: smooth; }
+body { background: var(--void); font-family: var(--font-sans); }
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: overlay;
+}
+
+@layer utilities {
+  .font-display  { font-family: var(--font-display); }
+  .font-serif    { font-family: var(--font-serif); }
+  .font-sans     { font-family: var(--font-sans); }
+  .text-gold     { color: var(--gold); }
+  .text-amber    { color: var(--amber); }
+  .text-ember    { color: var(--ember); }
+  .text-fog      { color: var(--fog); }
+  .text-mist     { color: var(--mist); }
+  .text-silver   { color: var(--silver); }
+  .text-snow     { color: var(--snow); }
+  .text-ash      { color: var(--ash); }
+  .bg-void       { background-color: var(--void); }
+  .bg-deep       { background-color: var(--deep); }
+  .bg-ink        { background-color: var(--ink); }
+  .bg-panel      { background-color: var(--panel); }
+  .bg-surface    { background-color: var(--surface); }
+  .tracking-ultra { letter-spacing: 0.45em; }
+  .tracking-wide-xl { letter-spacing: 0.3em; }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-gold { text-shadow: 0 0 40px rgba(200,150,12,0.4); }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    font-weight: 400;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .pull-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--silver);
+    line-height: 1.7;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .chapter-body p {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.95;
+    margin-bottom: 1.2em;
+  }
+  .chapter-body p strong { color: var(--snow); font-weight: 400; }
+  .chapter-body p em { color: var(--silver); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes orb-pulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
